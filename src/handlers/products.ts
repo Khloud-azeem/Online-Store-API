@@ -34,21 +34,12 @@ const create = async function (req: Request, res: Response) {
     res.status(400).json(err);
   }
 };
-const showByCategory = async function (req: Request, res: Response) {
-  const category = req.params.category;
-  try {
-    const newProduct = await productStore.showByCategory(category);
-    return res.json(newProduct);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-};
 
-const productRoutes = (app: express.Application) => {
+
+const productsRoutes = (app: express.Application) => {
   app.get("/products", index);
   app.get("/products/:id", show);
   app.post("/products", auth.verifyToken, create);
-  app.get("/products/category/:category", showByCategory);
 };
 
-export default productRoutes;
+export default productsRoutes;

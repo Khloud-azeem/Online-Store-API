@@ -4,15 +4,11 @@ describe("test order model", () => {
   const orderStore = new OrderStore();
 
   const currentOrder: Order = {
-    prod_id: 1,
     user_id: 1,
-    quantity: 1,
     status: "active",
   };
   const completedOrder: Order = {
-    prod_id: 1,
     user_id: 1,
-    quantity: 1,
     status: "active",
   };
   it("showCurrentOrder", async () => {

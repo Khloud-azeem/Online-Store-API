@@ -14,36 +14,35 @@ const showCurrentOrder = async function (req: Request, res: Response) {
   }
 };
 
-const showCompletedOrders = async function (req: Request, res: Response) {
-  const id = req.params.user_id;
-  try {
-    const orders = await orderStore.showCompletedOrders(parseInt(id));
-    return res.json(orders);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-};
-
 const create = async function (req: Request, res: Response) {
   const order: Order = {
-    prod_id: parseInt(req.body.prod_id),
     user_id: parseInt(req.body.user_id),
-    quantity: parseInt(req.body.quantity),
     status: req.body.status,
   };
   try {
     const newOrder = await orderStore.create(order);
-    console.log(newOrder);
     return res.json(newOrder);
   } catch (err) {
     res.status(400).json(err);
   }
 };
 
-const orderRoutes = (app: express.Application) => {
-  app.get("/orders/:user_id", auth.verifyToken, showCurrentOrder);
-  app.get("/orders/completed/:user_id", auth.verifyToken, showCompletedOrders);
+const addProduct = async function (req: Request, res: Response) {
+  const order_id = req.params.order_id
+  const product_id = req.body.product_id
+  const quantity = req.body.quantity
+  try {
+    const result = await orderStore.addProduct(product_id, parseInt(order_id), quantity)
+    res.json(result)
+  } catch (err) {
+    res.status(400).json(err);
+  }
+}
+
+const ordersRoutes = (app: express.Application) => {
+  app.get("/orders/:user_id/current", auth.verifyToken, showCurrentOrder);
   app.post("/orders", auth.verifyToken, create);
+  app.post("/orders/:order_id/products", auth.verifyToken, addProduct);
 };
 
-export default orderRoutes;
+export default ordersRoutes;

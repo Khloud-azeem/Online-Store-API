@@ -48,28 +48,4 @@ export class ProductStore {
       throw new Error(`${err}`);
     }
   }
-  async showTop5(): Promise<Product[]> {
-    try {
-      const conn = await Pool.connect();
-      const sql = ``;
-      const res = await conn.query(sql);
-      conn.release();
-      return res.rows;
-    } catch (err) {
-      console.log(err);
-      throw new Error(`${err}`);
-    }
-  }
-  async showByCategory(category: string): Promise<Product[]> {
-    try {
-      const conn = await Pool.connect();
-      const sql = `SELECT * FROM products WHERE category = $1;`;
-      const res = await conn.query(sql, [category]);
-      conn.release();
-      return res.rows;
-    } catch (err) {
-      console.log(err);
-      throw new Error(`${err}`);
-    }
-  }
 }

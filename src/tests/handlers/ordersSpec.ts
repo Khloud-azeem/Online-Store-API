@@ -33,9 +33,7 @@ describe("test /orders endpoint", () => {
   });
   it("should return 200 status code", async () => {
     const order: Order = {
-      prod_id: 1,
       user_id: 1,
-      quantity: 1,
       status: "active",
     };
     const response = await request
