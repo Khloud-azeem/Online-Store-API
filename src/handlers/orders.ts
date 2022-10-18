@@ -28,16 +28,20 @@ const create = async function (req: Request, res: Response) {
 };
 
 const addProduct = async function (req: Request, res: Response) {
-  const order_id = req.params.order_id
-  const product_id = req.body.product_id
-  const quantity = req.body.quantity
+  const order_id = req.params.order_id;
+  const product_id = req.body.product_id;
+  const quantity = req.body.quantity;
   try {
-    const result = await orderStore.addProduct(product_id, parseInt(order_id), quantity)
-    res.json(result)
+    const result = await orderStore.addProduct(
+      product_id,
+      parseInt(order_id),
+      quantity
+    );
+    res.json(result);
   } catch (err) {
     res.status(400).json(err);
   }
-}
+};
 
 const ordersRoutes = (app: express.Application) => {
   app.get("/orders/:user_id/current", auth.verifyToken, showCurrentOrder);

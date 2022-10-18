@@ -7,19 +7,11 @@ describe("test order model", () => {
     user_id: 1,
     status: "active",
   };
-  const completedOrder: Order = {
-    user_id: 1,
-    status: "active",
-  };
+
   it("showCurrentOrder", async () => {
     const user_id = 1;
     const result = await orderStore.showCurrentOrder(user_id);
     expect(result).toBe(currentOrder);
-  });
-  it("showCompletedOrders", async () => {
-    const user_id = 1;
-    const result = await orderStore.showCompletedOrders(user_id);
-    expect(result).toBe([completedOrder]);
   });
   it("create", async () => {
     const result = await orderStore.create(currentOrder);

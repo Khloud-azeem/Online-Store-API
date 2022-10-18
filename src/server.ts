@@ -16,7 +16,7 @@ app.get("/", function (req: Request, res: Response) {
 usersRoutes(app);
 productsRoutes(app);
 ordersRoutes(app);
-dashboardRoutes(app)
+dashboardRoutes(app);
 
 app.listen(3000, function () {
   console.log(`starting app on: ${address}`);

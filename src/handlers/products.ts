@@ -35,7 +35,6 @@ const create = async function (req: Request, res: Response) {
   }
 };
 
-
 const productsRoutes = (app: express.Application) => {
   app.get("/products", index);
   app.get("/products/:id", show);
