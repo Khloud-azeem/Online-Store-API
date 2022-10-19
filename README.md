@@ -1,5 +1,77 @@
 # Storefront Backend Project
 
+## Getting started
+git clone https://github.com/Khloud-azeem/Online-Store-API.git
+
+## Setup
+
+### Database
+create 2 Postgres Sql databases one for development and one for testing with the following:
+```
+-host: localhost
+-port: 5432
+-development db name: store_front_dev
+-testing db name: store_front_test
+-username: {your username}
+-password: {your password}
+```
+
+### Environment
+create .env file in your root directory with the following :
+```
+POSTGRES_HOST={your db host}
+POSTGRES_DB={your development db name}
+POSTGRES_TEST_DB={your testing db name}
+POSTGRES_USER={your username}
+POSTGRES_PASSWORD={your password}
+ENV=dev
+SALT_ROUNDS = 10
+BCRYPT_PASSWORD = {your bcrypt password}
+TOKEN_SECRET = {your jwt secret}
+```
+
+### Package installation
+```
+npm install
+```
+
+## Run the app
+to migrate database use 
+```
+db-migrate up
+```
+to run the application use
+```
+npm run watch
+```
+Navigate to ```http://localhost:3000/```
+
+### Testing
+to run test cases use
+```
+npm run test
+```
+
+## Endpoints
+|Path|HTTP method|Description|
+|---|---|---|
+|/|GET|main api endpoint that welcoms the user|
+|/users|GET|gets a list of users signed up in the app|
+|/users/:id|GET|gets a user by a given user id|
+|/users|POST|signs up a new user|
+|/products|GET|gets a list of products stored in db|
+|/prosucts/:id|GET|gets a product by a given product id|
+|/products|POST|adds new product to db|
+|/products/category/:category|GET|gets products with a given category|
+|/products/top5|GET|gets top 5 ordered products|
+|orders/|GET:user_id/current|gets active order made by a user with a given id|
+|orders/:user_id/completed|GET|gets completed orders by a user with the his id|
+|/orders|POST|adds a new order|
+|/orders/:order_id/products|POST|add a new product to an active order with its id|
+
+
+<!-- # Storefront Backend Project
+
 ## Getting Started
 
 This repo contains a basic Node and Express app to get you started in constructing an API. To get started, clone this repo and run `yarn` in your terminal at the project root.
@@ -51,4 +123,4 @@ Add JWT functionality as shown in the course. Make sure that JWTs are required f
 
 Before submitting, make sure that your project is complete with a `README.md`. Your `README.md` must include instructions for setting up and running your project including how you setup, run, and connect to your database. 
 
-Before submitting your project, spin it up and test each endpoint. If each one responds with data that matches the data shapes from the `REQUIREMENTS.md`, it is ready for submission!
+Before submitting your project, spin it up and test each endpoint. If each one responds with data that matches the data shapes from the `REQUIREMENTS.md`, it is ready for submission! -->

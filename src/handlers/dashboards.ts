@@ -34,7 +34,7 @@ const showCompletedOrders = async function (req: Request, res: Response) {
 
 const dashboardRoutes = (app: express.Application) => {
   app.get("/products/category/:category", showProductsByCategory);
-  app.get("/products/top", showTop5Products);
+  app.get("/products/top5", showTop5Products);
   app.get("/orders/:user_id/completed", auth.verifyToken, showCompletedOrders);
 };
 
