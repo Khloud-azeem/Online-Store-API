@@ -62,4 +62,15 @@ export class OrderStore {
       throw new Error(`${err}`);
     }
   }
+  async delete_(id: number) {
+    try {
+      const conn = await Pool.connect();
+      const sql = `DELETE FROM orders WHERE id = $1;`;
+      const res = await conn.query(sql, [id]);
+      conn.release();
+      return res;
+    } catch (err) {
+      throw new Error(`${err}`);
+    }
+  }
 }

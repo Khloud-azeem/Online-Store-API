@@ -9,7 +9,7 @@ export type User = {
 };
 
 export class UserStore {
-  async index(): Promise<User[]> {
+  async index() {
     try {
       const conn = await Pool.connect();
       const sql = "SELECT * FROM users;";
@@ -17,21 +17,23 @@ export class UserStore {
       conn.release();
       return res.rows;
     } catch (err) {
+      console.log(err);
       throw new Error(`${err}`);
     }
   }
-  async show(id: number): Promise<User> {
+  async show(id: number) {
     try {
       const conn = await Pool.connect();
-      const sql = `SELECT * FROM users WHERE id = ${id};`;
-      const res = await conn.query(sql);
+      const sql = `SELECT * FROM users WHERE id = $1;`;
+      const res = await conn.query(sql, [id]);
       conn.release();
       return res.rows[0];
     } catch (err) {
+      console.log(err);
       throw new Error(`${err}`);
     }
   }
-  async create(user: User): Promise<User> {
+  async create(user: User) {
     try {
       const pepper = process.env.BCRYPT_PASSWORD;
       const saltRounds = process.env.SALT_ROUNDS;
@@ -48,6 +50,18 @@ export class UserStore {
       ]);
       conn.release();
       return res.rows[0];
+    } catch (err) {
+      console.log(err);
+      throw new Error(`${err}`);
+    }
+  }
+  async delete_(id: number) {
+    try {
+      const conn = await Pool.connect();
+      const sql = `DELETE FROM users WHERE id = ${id};`;
+      const res = await conn.query(sql);
+      conn.release();
+      return res;
     } catch (err) {
       console.log(err);
       throw new Error(`${err}`);

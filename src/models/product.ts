@@ -23,8 +23,8 @@ export class ProductStore {
   async show(id: number): Promise<Product> {
     try {
       const conn = await Pool.connect();
-      const sql = `SELECT * FROM products WHERE id = ${id};`;
-      const res = await conn.query(sql);
+      const sql = `SELECT * FROM products WHERE id = $1;`;
+      const res = await conn.query(sql, [id]);
       conn.release();
       return res.rows[0];
     } catch (err) {
@@ -43,6 +43,18 @@ export class ProductStore {
       ]);
       conn.release();
       return res.rows[0];
+    } catch (err) {
+      console.log(err);
+      throw new Error(`${err}`);
+    }
+  }
+  async delete_(id: number) {
+    try {
+      const conn = await Pool.connect();
+      const sql = `DELETE FROM products WHERE id = $1;`;
+      const res = await conn.query(sql, [id]);
+      conn.release();
+      return res;
     } catch (err) {
       console.log(err);
       throw new Error(`${err}`);
