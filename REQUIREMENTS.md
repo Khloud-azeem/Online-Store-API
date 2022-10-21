@@ -10,16 +10,19 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Create [token required]
 - [OPTIONAL] Top 5 most popular products 
 - [OPTIONAL] Products by category (args: product category)
+- delete
 
 #### Users
 - Index [token required]
 - Show [token required]
-- Create N[token required]
+- Create
+- delete
 
 #### Orders
 - Current Order by user (args: user id)[token required]
 - [OPTIONAL] Completed Orders by user (args: user id)[token required]
 - Create[token required]
+- delete
 
 ## Data Shapes
 #### Product
