@@ -13,7 +13,7 @@ describe("test dashboard", () => {
     const user: User = {
       first_name: "Khloud",
       last_name: "Abdelazeem",
-      password: "pasword123"
+      password: "pasword123",
     };
     await userStore.create(user);
 
@@ -25,11 +25,13 @@ describe("test dashboard", () => {
 
     const user_id = 1;
     const result = await dashBoard.showCompletedOrders(user_id);
-    expect(result).toEqual([{
-      id: 1,
-      user_id: 1,
-      status: "complete",
-    }]);
+    expect(result).toEqual([
+      {
+        id: 1,
+        user_id: 1,
+        status: "complete",
+      },
+    ]);
   });
 
   it("showProductsByCategory", async () => {
@@ -38,22 +40,23 @@ describe("test dashboard", () => {
       price: 2,
       category: "extra",
     };
-    await productStore.create(product)
+    await productStore.create(product);
 
     const category = "extra";
     const result = await dashBoard.showProductsByCategory(category);
-    expect(result).toEqual([{
-      id: 1,
-      name: "chocolate",
-      price: 2,
-      category: "extra",
-    }]);
-
+    expect(result).toEqual([
+      {
+        id: 1,
+        name: "chocolate",
+        price: 2,
+        category: "extra",
+      },
+    ]);
   });
 
   afterAll(async () => {
     await orderStore.delete_(1);
     await productStore.delete_(1);
     await userStore.delete_(1);
-  })
+  });
 });

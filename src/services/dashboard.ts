@@ -39,4 +39,16 @@ export class Dashboard {
       throw new Error(`${err}`);
     }
   }
+  async deleteProductFromOrder(id: number): Promise<Order[]> {
+    try {
+      const conn = await Pool.connect();
+      const sql = `DELETE FROM orders_products WHERE (id = $1);`;
+      const res = await conn.query(sql, [id]);
+      conn.release();
+      return res.rows;
+    } catch (err) {
+      console.log(err);
+      throw new Error(`${err}`);
+    }
+  }
 }

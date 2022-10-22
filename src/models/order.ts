@@ -38,11 +38,7 @@ export class OrderStore {
       throw new Error(`${err}`);
     }
   }
-  async addProduct(
-    product_id: number,
-    order_id: number,
-    quantity: number
-  ) {
+  async addProduct(product_id: number, order_id: number, quantity: number) {
     try {
       const conn = await Pool.connect();
       //ensure product isn't added to a completed order

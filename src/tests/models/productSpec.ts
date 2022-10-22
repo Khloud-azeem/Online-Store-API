@@ -20,12 +20,14 @@ describe("test product model", () => {
   });
   it("index", async () => {
     const result = await productStore.index();
-    expect(result).toEqual([{
-      id: 2,
-      name: "chocolate",
-      price: 2,
-      category: "extra",
-    }]);
+    expect(result).toEqual([
+      {
+        id: 2,
+        name: "chocolate",
+        price: 2,
+        category: "extra",
+      },
+    ]);
   });
   it("show", async () => {
     const prod_id = 2;
@@ -43,5 +45,5 @@ describe("test product model", () => {
 
   afterAll(async () => {
     await productStore.delete_(2);
-  })
+  });
 });

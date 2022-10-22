@@ -1,20 +1,79 @@
 # Storefront Backend Project
 
 ## Getting started
+```
 git clone https://github.com/Khloud-azeem/Online-Store-API.git
-
-## Setup
-
-### Database
-create 2 Postgres Sql databases one for development and one for testing with the following:
 ```
--host: localhost
--port: 5432
--development db name: store_front_dev
--testing db name: store_front_test
--username: {your username}
--password: {your password}
+
+## Database 
+
+### Setup
+Create 2 Postgres Sql databases one for development and one for testing with the following:
+- Host: localhost
+- Port: 5432
+- Development db name: store_front_dev
+- Testing db name: store_front_test
+- Username: {your username}
+- Password: {your password}
+
+### Connection
+In terminal:
+- Connect to the default postgres databse as the server's root user 
 ```
+psql -U postgres
+```
+- Create user 
+```
+CREATE USER {username} WITH PASSWORD {password}
+```
+- Create dev and test database 
+```
+CREATE DATABASE store_front_dev
+```
+```
+CREATE DATABASE store_front_test
+```
+- Connect to the database and grant all privilages 
+    - Grant for dev database
+    ```
+    \c store_front_dev
+    GRANT ALL PROIVILEGES ON DATABASE store_front_dev TO {username}
+    ```
+    - Grant for test database
+    ```
+    \c store_front_test
+    GRANT ALL PROIVILEGES ON DATABASE store_front_test TO {username}
+    ```
+
+### Schema
+ List of relations:
+ Schema |      Name       | Type  |
+--------|-----------------|-------|
+ public | migrations      | table |
+ public | orders          | table |
+ public | orders_products | table |
+ public | products        | table |
+ public | users           | table |
+ 
+ - users table
+
+ id | first_name | last_name  | password_digest|
+ ---|------------|------------|----------------|
+
+- products table
+
+id |   name    | price | category|
+ ---|------------|------------|----------------|
+
+- orders table 
+
+id | user_id | status |
+ ---|------------|------------|
+
+- orders_products table
+
+id | order_id | product_id | quantity|
+ ---|------------|------------|----------------|
 
 ### Environment
 create .env file in your root directory with the following :
@@ -36,15 +95,16 @@ npm install
 ```
 
 ## Run the app
-to migrate database use 
+- Backend server is running on port 3000 
+- Migrate database use 
 ```
 db-migrate up
 ```
-to run the application use
+- Run the application use
 ```
 npm run watch
 ```
-Navigate to ```http://localhost:3000/```
+- Navigate to ```http://localhost:3000/```
 
 ### Testing
 to run test cases use
@@ -59,15 +119,18 @@ npm run test
 |/users|GET|gets a list of users signed up in the app|
 |/users/:id|GET|gets a user by a given user id|
 |/users|POST|signs up a new user|
+|/users/:id|DELETE|deletes a user from db
 |/products|GET|gets a list of products stored in db|
 |/prosucts/:id|GET|gets a product by a given product id|
 |/products|POST|adds new product to db|
 |/products/category/:category|GET|gets products with a given category|
 |/products/top5|GET|gets top 5 ordered products|
+|/products/:id|DELETE|deletes a product from db
 |orders/|GET:user_id/current|gets active order made by a user with a given id|
 |orders/:user_id/completed|GET|gets completed orders by a user with the his id|
 |/orders|POST|adds a new order|
 |/orders/:order_id/products|POST|add a new product to an active order with its id|
+|/orders/:id|DELETE|deletes an order from db
 
 
 <!-- # Storefront Backend Project

@@ -39,7 +39,6 @@
     "eslint-plugin-prettier": "^4.2.1",
     "jasmine": "^4.4.0",
     "jasmine-spec-reporter": "^7.0.0",
-    "jasmine-ts": "^0.3.3",
     "prettier": "^2.7.1",
     "supertest": "^6.3.0",
     "ts-node": "^10.9.1",

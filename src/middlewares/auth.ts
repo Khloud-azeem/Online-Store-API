@@ -9,8 +9,7 @@ const verifyToken = (
   try {
     const authorizationHeader = req.headers.authorization;
     const token = (authorizationHeader as string).split(" ")[1];
-    const decoded = jwt.verify(token, process.env.TOKEN_SECRET as string);
-    console.log(decoded);
+    jwt.verify(token, process.env.TOKEN_SECRET as string);
     next();
   } catch (error) {
     res.status(401);

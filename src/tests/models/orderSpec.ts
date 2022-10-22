@@ -4,13 +4,14 @@ import { User, UserStore } from "../../models/user";
 describe("test order model", () => {
   const orderStore = new OrderStore();
   const userStore = new UserStore();
+
   beforeAll(async () => {
     const user: User = {
       first_name: "Khloud",
       last_name: "Abdelazeem",
-      password: "pasword123"
+      password: "pasword123",
     };
-    const res = await userStore.create(user);
+    await userStore.create(user);
   });
 
   const currentOrder: Order = {
