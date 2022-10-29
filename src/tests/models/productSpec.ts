@@ -2,6 +2,9 @@ import { Product, ProductStore } from "../../models/product";
 
 describe("test product model", () => {
   const productStore = new ProductStore();
+  beforeAll(async () => {
+    await productStore.delete_(1);
+  });
 
   const product: Product = {
     name: "chocolate",

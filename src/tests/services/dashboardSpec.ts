@@ -9,26 +9,27 @@ describe("test dashboard", () => {
   const orderStore = new OrderStore();
   const userStore = new UserStore();
 
-  it("showCompletedOrders", async () => {
-    const user: User = {
-      first_name: "Khloud",
-      last_name: "Abdelazeem",
-      password: "pasword123",
-    };
+  const user: User = {
+    first_name: "Khloud",
+    last_name: "Abdelazeem",
+    password: "pasword123",
+  };
+  beforeAll(async () => {
     await userStore.create(user);
-
+  });
+  it("showCompletedOrders", async () => {
     const completedOrder: Order = {
-      user_id: 1,
+      user_id: 5,
       status: "complete",
     };
     await orderStore.create(completedOrder);
 
-    const user_id = 1;
+    const user_id = 5;
     const result = await dashBoard.showCompletedOrders(user_id);
     expect(result).toEqual([
       {
-        id: 1,
-        user_id: 1,
+        id: 3,
+        user_id: 5,
         status: "complete",
       },
     ]);
@@ -46,7 +47,7 @@ describe("test dashboard", () => {
     const result = await dashBoard.showProductsByCategory(category);
     expect(result).toEqual([
       {
-        id: 1,
+        id: 3,
         name: "chocolate",
         price: 2,
         category: "extra",
