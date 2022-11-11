@@ -15,8 +15,10 @@ describe("test /dashboards endpoint", () => {
       last_name: "abdelazeem",
       password: "password123",
     };
-    await userStore.create(user);
     token = jwt.sign({ user: user }, process.env.TOKEN_SECRET as string);
+    return await request.post('/users')
+      .set('Authorization', 'Bearer' + token)
+      .send(user);
   });
 
   it("get /products/category/:category should return 200 status code", async () => {
