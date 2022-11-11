@@ -22,7 +22,9 @@ describe("test /orders endpoint", () => {
       password: "password123",
     };
     token = jwt.sign({ user: user }, process.env.TOKEN_SECRET as string);
-    return await userStore.create(user);
+    return await request.post('/users')
+      .set('Authorization', 'Bearer' + token)
+      .send(user);
   });
 
   it("post /orders should return 200 status code", async () => {

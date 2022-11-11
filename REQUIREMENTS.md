@@ -44,26 +44,30 @@ These are the notes from a meeting with the frontend developer that describe wha
 |/orders/:id|DELETE|deletes an order from db
 
 ## Data Shapes
-#### Product
--  id
-- name
-- price
-- [OPTIONAL] category
+#### product
+- id SERIAL PRIMARY KEY
+- name VARCHAR
+- price real
+- category VARCHAR
 
 #### User
-- id
-- firstName
-- lastName
-- password
+- id SERIAL PRIMARY KEY
+- first_name VARCHAR
+- last_name VARCHAR
+- password_digest VARCHAR
 
-#### Orders
-- id
-- id of each product in the order
-- quantity of each product in the order
-- user_id
-- status of order (active or complete)
+#### orders
+- id SERIAL PRIMARY KEY
+- user_id Integer REFERENCES users
+- status VARCHAR
 
-List of relations:
+#### order_product
+- id SERIAL PRIMARY KEY
+- order_id Integer REFERENCES orders
+- product_id Integer REFERENCES products
+- quantity Integer NOT NULL
+
+### Schema
  Schema |      Name       | Type  |
 --------+-----------------+-------+
  public | migrations      | table |
